@@ -63,6 +63,7 @@ export function RouteStationsEditor({
                 onChange={(e) => onUpdate(i, "stationId", e.target.value)}
                 aria-label="Станція"
               >
+                <option value="">Оберіть станцію</option>
                 {stations.map((s) => (
                   <option key={s.id} value={s.id}>
                     {s.name}

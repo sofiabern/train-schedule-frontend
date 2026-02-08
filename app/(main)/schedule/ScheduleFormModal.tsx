@@ -67,7 +67,7 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
           if (newRouteStations.length === 0 && s.length > 0) {
             setNewRouteStations([
               {
-                stationId: s[0].id,
+                stationId: "",
                 order: 0,
                 arrivalTime: "00:00",
                 departureTime: "00:00",
@@ -83,7 +83,7 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
     setNewRouteStations((p) => [
       ...p,
       {
-        stationId: stations[0]?.id ?? "",
+        stationId: "",
         order: p.length,
         arrivalTime: "00:00",
         departureTime: "00:00",
@@ -129,6 +129,11 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
         }
         if (newRouteStations.length === 0) {
           setError("Додайте хоча б одну зупинку до маршруту");
+          setLoading(false);
+          return;
+        }
+        if (newRouteStations.some((rs) => !rs.stationId?.trim())) {
+          setError("Оберіть станцію для кожної зупинки");
           setLoading(false);
           return;
         }
@@ -269,7 +274,7 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
                         ) {
                           setNewRouteStations([
                             {
-                              stationId: stations[0].id,
+                              stationId: "",
                               order: 0,
                               arrivalTime: "00:00",
                               departureTime: "00:00",

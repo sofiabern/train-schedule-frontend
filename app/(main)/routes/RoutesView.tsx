@@ -54,7 +54,7 @@ export function RoutesView() {
     setName("");
     setRouteStations([
       {
-        stationId: stations[0]?.id ?? "",
+        stationId: "",
         order: 0,
         arrivalTime: "00:00",
         departureTime: "00:00",
@@ -81,7 +81,7 @@ export function RoutesView() {
     setRouteStations((p) => [
       ...p,
       {
-        stationId: stations[0]?.id ?? "",
+        stationId: "",
         order: p.length,
         arrivalTime: "00:00",
         departureTime: "00:00",
@@ -111,6 +111,11 @@ export function RoutesView() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const hasEmptyStation = routeStations.some((rs) => !rs.stationId?.trim());
+    if (hasEmptyStation) {
+      setError("Оберіть станцію для кожної зупинки");
+      return;
+    }
     setSaveLoading(true);
     setError("");
     try {
