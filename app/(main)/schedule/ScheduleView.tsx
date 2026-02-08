@@ -92,38 +92,40 @@ export function ScheduleView() {
   }
 
   return (
-    <div className="space-y-4">
-      <ScheduleFilters
-        search={search}
-        onSearchChange={setSearch}
-        dayFilter={dayFilter}
-        onDayFilterChange={setDayFilter}
-        sortBy={sortBy}
-        onSortByChange={setSortBy}
-        sortOrder={sortOrder}
-        onSortOrderChange={setSortOrder}
-        showAddButton={isAuthenticated}
-        onAddClick={() => {
-          setEditingId(null);
-          setModal("add");
-        }}
-      />
-
-      {error && <ErrorMessage message={error} />}
-
-      {loading ? (
-        <LoadingState />
-      ) : items.length === 0 ? (
-        <EmptyState message="Немає рейсів за вашим пошуком." />
-      ) : (
-        <ScheduleTable
-          items={items}
-          isAuthenticated={isAuthenticated}
-          onDetail={setDetailSchedule}
-          onEdit={openEdit}
-          onDelete={handleDelete}
+    <>
+      <div className="space-y-4">
+        <ScheduleFilters
+          search={search}
+          onSearchChange={setSearch}
+          dayFilter={dayFilter}
+          onDayFilterChange={setDayFilter}
+          sortBy={sortBy}
+          onSortByChange={setSortBy}
+          sortOrder={sortOrder}
+          onSortOrderChange={setSortOrder}
+          showAddButton={isAuthenticated}
+          onAddClick={() => {
+            setEditingId(null);
+            setModal("add");
+          }}
         />
-      )}
+
+        {error && <ErrorMessage message={error} />}
+
+        {loading ? (
+          <LoadingState />
+        ) : items.length === 0 ? (
+          <EmptyState message="Немає рейсів за вашим пошуком." />
+        ) : (
+          <ScheduleTable
+            items={items}
+            isAuthenticated={isAuthenticated}
+            onDetail={setDetailSchedule}
+            onEdit={openEdit}
+            onDelete={handleDelete}
+          />
+        )}
+      </div>
 
       {modal === "add" && (
         <ScheduleFormModal
@@ -148,6 +150,6 @@ export function ScheduleView() {
           onClose={() => setDetailSchedule(null)}
         />
       )}
-    </div>
+    </>
   );
 }

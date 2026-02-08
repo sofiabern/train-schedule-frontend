@@ -83,67 +83,69 @@ export function StationsView() {
   }
 
   return (
-    <div className="space-y-4">
-      {isAuthenticated && (
-        <button type="button" className="btn-primary" onClick={openAdd}>
-          + Додати станцію
-        </button>
-      )}
+    <>
+      <div className="space-y-4">
+        {isAuthenticated && (
+          <button type="button" className="btn-primary" onClick={openAdd}>
+            + Додати станцію
+          </button>
+        )}
 
-      {error && <ErrorMessage message={error} />}
+        {error && <ErrorMessage message={error} />}
 
-      {loading ? (
-        <LoadingState />
-      ) : items.length === 0 ? (
-        <EmptyState message="Немає станцій." />
-      ) : (
-        <div className="card overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-rail-700 bg-rail-800/60">
-                  <th className="text-left py-3 px-4 text-gray-400 font-medium">
-                    Назва
-                  </th>
-                  {isAuthenticated && (
-                    <th className="text-right py-3 px-4 text-gray-400 font-medium w-32">
-                      Дії
+        {loading ? (
+          <LoadingState />
+        ) : items.length === 0 ? (
+          <EmptyState message="Немає станцій." />
+        ) : (
+          <div className="card overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-rail-700 bg-rail-800/60">
+                    <th className="text-left py-3 px-4 text-gray-400 font-medium">
+                      Назва
                     </th>
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((s) => (
-                  <tr
-                    key={s.id}
-                    className="border-b border-rail-700/50 hover:bg-rail-800/30"
-                  >
-                    <td className="py-3 px-4 font-medium">{s.name}</td>
                     {isAuthenticated && (
-                      <td className="py-3 px-4 text-right">
-                        <button
-                          type="button"
-                          className="btn-ghost text-sm mr-1"
-                          onClick={() => openEdit(s)}
-                        >
-                          Змінити
-                        </button>
-                        <button
-                          type="button"
-                          className="btn-ghost text-sm text-red-400 hover:text-red-300"
-                          onClick={() => handleDelete(s)}
-                        >
-                          Видалити
-                        </button>
-                      </td>
+                      <th className="text-right py-3 px-4 text-gray-400 font-medium w-32">
+                        Дії
+                      </th>
                     )}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {items.map((s) => (
+                    <tr
+                      key={s.id}
+                      className="border-b border-rail-700/50 hover:bg-rail-800/30"
+                    >
+                      <td className="py-3 px-4 font-medium">{s.name}</td>
+                      {isAuthenticated && (
+                        <td className="py-3 px-4 text-right">
+                          <button
+                            type="button"
+                            className="btn-ghost text-sm mr-1"
+                            onClick={() => openEdit(s)}
+                          >
+                            Змінити
+                          </button>
+                          <button
+                            type="button"
+                            className="btn-ghost text-sm text-red-400 hover:text-red-300"
+                            onClick={() => handleDelete(s)}
+                          >
+                            Видалити
+                          </button>
+                        </td>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {modal && (
         <Modal onClose={() => setModal(null)}>
@@ -184,6 +186,6 @@ export function StationsView() {
           </div>
         </Modal>
       )}
-    </div>
+    </>
   );
 }
