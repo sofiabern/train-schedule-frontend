@@ -64,11 +64,6 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
               : [1, 2, 3, 4, 5, 6, 0],
           });
         } else {
-          setForm((prev) => ({
-            ...prev,
-            trainId: t.length ? t[0].id : prev.trainId,
-            routeId: r.length ? r[0].id : prev.routeId,
-          }));
           if (newRouteStations.length === 0 && s.length > 0) {
             setNewRouteStations([
               {
