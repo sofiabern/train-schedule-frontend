@@ -12,7 +12,6 @@ export interface Station {
 export interface Train {
   id: string;
   name: string;
-  capacity: number;
 }
 
 export interface RouteStation {

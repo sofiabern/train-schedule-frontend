@@ -215,7 +215,7 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
               <option value="">Оберіть поїзд</option>
               {trains.map((t) => (
                 <option key={t.id} value={t.id}>
-                  {t.name} (місткість: {t.capacity})
+                  {t.name}
                 </option>
               ))}
             </select>

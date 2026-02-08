@@ -20,7 +20,6 @@ export function TrainsView() {
   const [modal, setModal] = useState<"add" | "edit" | null>(null);
   const [editing, setEditing] = useState<Train | null>(null);
   const [name, setName] = useState("");
-  const [capacity, setCapacity] = useState("");
   const [saveLoading, setSaveLoading] = useState(false);
   const { isAuthenticated } = useAuth();
 
@@ -44,31 +43,24 @@ export function TrainsView() {
   function openAdd() {
     setEditing(null);
     setName("");
-    setCapacity("");
     setModal("add");
   }
 
   function openEdit(t: Train) {
     setEditing(t);
     setName(t.name);
-    setCapacity(String(t.capacity));
     setModal("edit");
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const cap = parseInt(capacity, 10);
-    if (Number.isNaN(cap) || cap < 1) {
-      setError("Місткість має бути числом більше 0");
-      return;
-    }
     setSaveLoading(true);
     setError("");
     try {
       if (editing) {
-        await trainUpdate(editing.id, { name, capacity: cap });
+        await trainUpdate(editing.id, { name });
       } else {
-        await trainCreate({ name, capacity: cap });
+        await trainCreate({ name });
       }
       setModal(null);
       setEditing(null);
@@ -114,9 +106,6 @@ export function TrainsView() {
                     <th className="text-left py-3 px-4 text-gray-400 font-medium">
                       Назва
                     </th>
-                    <th className="text-left py-3 px-4 text-gray-400 font-medium">
-                      Місткість
-                    </th>
                     {isAuthenticated && (
                       <th className="text-right py-3 px-4 text-gray-400 font-medium w-32">
                         Дії
@@ -131,7 +120,6 @@ export function TrainsView() {
                       className="border-b border-rail-700/50 hover:bg-rail-800/30"
                     >
                       <td className="py-3 px-4 font-medium">{t.name}</td>
-                      <td className="py-3 px-4 text-gray-400">{t.capacity}</td>
                       {isAuthenticated && (
                         <td className="py-3 px-4 text-right">
                           <button
@@ -175,19 +163,6 @@ export function TrainsView() {
                   className="input"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">
-                  Місткість
-                </label>
-                <input
-                  type="number"
-                  min={1}
-                  className="input"
-                  value={capacity}
-                  onChange={(e) => setCapacity(e.target.value)}
                   required
                 />
               </div>

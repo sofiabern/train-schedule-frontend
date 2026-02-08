@@ -109,14 +109,14 @@ export function trainGet(id: string) {
   return api<Train>(`/trains/${id}`);
 }
 
-export function trainCreate(data: { name: string; capacity: number }) {
+export function trainCreate(data: { name: string }) {
   return api<Train>("/trains", {
     method: "POST",
     body: JSON.stringify(data),
   });
 }
 
-export function trainUpdate(id: string, data: { name?: string; capacity?: number }) {
+export function trainUpdate(id: string, data: { name?: string }) {
   return api<Train>(`/trains/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),

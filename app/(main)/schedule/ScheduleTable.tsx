@@ -56,10 +56,7 @@ export function ScheduleTable({
                 className="border-b border-rail-700/50 hover:bg-rail-800/30"
               >
                 <td className="py-3 px-4">
-                  <span className="font-medium">{s.train.name}</span>
-                  <span className="text-gray-500 text-sm ml-2">
-                    (місткість: {s.train.capacity})
-                  </span>
+                    <span className="font-medium">{s.train.name}</span>
                 </td>
                 <td className="py-3 px-4">
                   {s.route.name}

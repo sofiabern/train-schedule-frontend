@@ -7,7 +7,7 @@ Web app for viewing and managing train schedules. Built with **Next.js 14**, **R
 ## Features
 
 - **Schedule** — view trips with search, day-of-week filter, and sort by departure/arrival time
-- **Trains** — list of trains with capacity (CRUD for authenticated users)
+- **Trains** — list of trains (CRUD for authenticated users)
 - **Stations** — station directory (CRUD for authenticated users)
 - **Routes** — routes with stops and arrival/departure times (CRUD for authenticated users)
 - **Auth** — login and admin registration (JWT)
