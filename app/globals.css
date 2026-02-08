@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rail-950: #072849;
+  --rail-900: #0b406d;
+  --rail-600: #0070c4;
+  --amber-signal: #f59e0b;
+}
+
+body {
+  @apply bg-rail-950 text-gray-100 antialiased min-h-screen;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-rail-950 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-amber-signal text-rail-950 hover:bg-amber-500 focus:ring-amber-signal px-4 py-2;
+  }
+  .btn-secondary {
+    @apply btn bg-rail-700 text-white hover:bg-rail-600 focus:ring-rail-500 px-4 py-2 border border-rail-600;
+  }
+  .btn-ghost {
+    @apply btn text-gray-300 hover:text-white hover:bg-rail-800 px-4 py-2;
+  }
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-500 focus:ring-red-500 px-4 py-2;
+  }
+  .input {
+    @apply w-full rounded-lg border border-rail-600 bg-rail-900/50 px-4 py-2.5 text-white placeholder-gray-500 focus:border-amber-signal focus:ring-1 focus:ring-amber-signal focus:outline-none;
+  }
+  .card {
+    @apply rounded-xl border border-rail-700/80 bg-rail-900/40 shadow-xl backdrop-blur;
+  }
+  .scrollbar-amber {
+    scrollbar-width: thin;
+    scrollbar-color: var(--amber-signal) transparent;
+  }
+  .scrollbar-amber::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-amber::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-amber::-webkit-scrollbar-thumb {
+    background: var(--amber-signal);
+    border-radius: 3px;
+  }
+  .scrollbar-amber::-webkit-scrollbar-thumb:hover {
+    background: #d97706;
+  }
+}
