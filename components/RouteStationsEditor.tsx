@@ -80,10 +80,18 @@ export function RouteStationsEditor({
               ) : (
                 <input
                   type="time"
-                  className="input w-full min-w-0"
+                  className="input w-full min-w-0 cursor-pointer"
                   value={rs.arrivalTime}
                   onChange={(e) => onUpdate(i, "arrivalTime", e.target.value)}
+                  onClick={(e) => {
+                    const target = e.target as HTMLInputElement;
+                    target.focus();
+                    if ('showPicker' in target && typeof target.showPicker === 'function') {
+                      target.showPicker();
+                    }
+                  }}
                   aria-label="Час прибуття"
+                  title="Клікніть для вибору часу"
                 />
               )}
               {isLast && !isFirst ? (
@@ -96,10 +104,18 @@ export function RouteStationsEditor({
               ) : (
                 <input
                   type="time"
-                  className="input w-full min-w-0"
+                  className="input w-full min-w-0 cursor-pointer"
                   value={rs.departureTime}
                   onChange={(e) => onUpdate(i, "departureTime", e.target.value)}
+                  onClick={(e) => {
+                    const target = e.target as HTMLInputElement;
+                    target.focus();
+                    if ('showPicker' in target && typeof target.showPicker === 'function') {
+                      target.showPicker();
+                    }
+                  }}
                   aria-label="Час відправлення"
+                  title="Клікніть для вибору часу"
                 />
               )}
               <button
