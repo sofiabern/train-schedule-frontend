@@ -157,7 +157,7 @@ export function RoutesView() {
     <>
       <div className="space-y-4">
         {isAuthenticated && (
-          <button type="button" className="btn-primary" onClick={openAdd}>
+          <button type="button" className="btn-primary text-sm sm:text-base w-full sm:w-auto" onClick={openAdd}>
             + Додати маршрут
           </button>
         )}
@@ -174,14 +174,14 @@ export function RoutesView() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-rail-700 bg-rail-800/60">
-                    <th className="text-left py-3 px-4 text-gray-400 font-medium">
+                    <th className="text-left py-2 px-2 sm:py-3 sm:px-4 text-gray-400 font-medium text-xs sm:text-sm">
                       Назва
                     </th>
-                    <th className="text-left py-3 px-4 text-gray-400 font-medium">
+                    <th className="text-left py-2 px-2 sm:py-3 sm:px-4 text-gray-400 font-medium text-xs sm:text-sm">
                       Станції
                     </th>
                     {isAuthenticated && (
-                      <th className="text-right py-3 px-4 text-gray-400 font-medium w-32">
+                      <th className="text-right py-2 px-2 sm:py-3 sm:px-4 text-gray-400 font-medium text-xs sm:text-sm w-24 sm:w-32">
                         Дії
                       </th>
                     )}
@@ -193,29 +193,33 @@ export function RoutesView() {
                       key={r.id}
                       className="border-b border-rail-700/50 hover:bg-rail-800/30"
                     >
-                      <td className="py-3 px-4 font-medium">{r.name}</td>
-                      <td className="py-3 px-4 text-gray-400">
+                      <td className="py-2 px-2 sm:py-3 sm:px-4 font-medium text-sm sm:text-base">{r.name}</td>
+                      <td className="py-2 px-2 sm:py-3 sm:px-4 text-gray-400 text-xs sm:text-sm">
                         {(r.routeStations ?? [])
                           .sort((a, b) => a.order - b.order)
                           .map((rs) => rs.station?.name ?? "—")
                           .join(" → ") || "—"}
                       </td>
                       {isAuthenticated && (
-                        <td className="py-3 px-4 text-right">
-                          <button
-                            type="button"
-                            className="btn-ghost text-sm mr-1"
-                            onClick={() => openEdit(r)}
-                          >
-                            Змінити
-                          </button>
-                          <button
-                            type="button"
-                            className="btn-ghost text-sm text-red-400 hover:text-red-300"
-                            onClick={() => handleDelete(r)}
-                          >
-                            Видалити
-                          </button>
+                        <td className="py-2 px-2 sm:py-3 sm:px-4 text-right">
+                          <div className="flex flex-wrap gap-1 justify-end">
+                            <button
+                              type="button"
+                              className="btn-ghost text-xs sm:text-sm px-2 sm:px-3"
+                              onClick={() => openEdit(r)}
+                            >
+                              <span className="hidden sm:inline">Змінити</span>
+                              <span className="sm:hidden">✏️</span>
+                            </button>
+                            <button
+                              type="button"
+                              className="btn-ghost text-xs sm:text-sm text-red-400 hover:text-red-300 px-2 sm:px-3"
+                              onClick={() => handleDelete(r)}
+                            >
+                              <span className="hidden sm:inline">Видалити</span>
+                              <span className="sm:hidden">🗑️</span>
+                            </button>
+                          </div>
                         </td>
                       )}
                     </tr>

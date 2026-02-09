@@ -21,7 +21,7 @@ export default function TrainsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white mb-6">Поїзди</h1>
+      <h1 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Поїзди</h1>
       <TrainsView />
     </div>
   );
