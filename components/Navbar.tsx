@@ -22,19 +22,25 @@ export function Navbar() {
           🚂 Розклад поїздів
         </Link>
         <nav className="flex items-center gap-1">
-          {nav.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                pathname === href
-                  ? "bg-rail-700 text-amber-signal"
-                  : "text-gray-400 hover:text-white hover:bg-rail-800"
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
+          {nav.map(({ href, label }) => {
+            // Показуємо тільки розклад для незалогіненого користувача
+            if (!isAuthenticated && href !== "/schedule") {
+              return null;
+            }
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  pathname === href
+                    ? "bg-rail-700 text-amber-signal"
+                    : "text-gray-400 hover:text-white hover:bg-rail-800"
+                }`}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </nav>
         <div className="flex items-center gap-2">
           {isAuthenticated ? (
