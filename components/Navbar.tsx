@@ -57,9 +57,14 @@ export function Navbar() {
               </button>
             </>
           ) : (
-            <Link href="/login" className="btn-primary text-sm">
-              Вхід
-            </Link>
+            <>
+              <Link href="/register" className="btn-primary text-sm">
+                Додати адміна
+              </Link>
+              <Link href="/login" className="btn-ghost text-sm">
+                Вхід
+              </Link>
+            </>
           )}
         </div>
       </div>
