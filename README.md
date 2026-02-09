@@ -27,6 +27,19 @@ To access admin features (viewing and managing trains, stations, routes, and sch
 1. **Login** - Use existing admin credentials
 2. **Register** - Create a new admin account (requires existing admin to be logged in)
 
+---
+
+### 🔑 Test Admin Credentials
+
+```
+Username: sofiia
+Password: sofiia
+```
+
+> **💡 Use these credentials to log in and access all admin features.**
+
+---
+
 After logging in, you can:
 - View trains, stations, and routes
 - Create, edit, and delete trains, stations, routes, and schedules
