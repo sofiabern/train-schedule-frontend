@@ -188,24 +188,24 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
   return (
     <Modal onClose={onClose}>
       <div
-        className={`card p-6 w-full my-8 ${
-          routeMode === "new" ? "max-w-2xl" : "max-w-md"
+        className={`card p-3 sm:p-4 md:p-6 w-full my-4 sm:my-6 md:my-8 mx-2 sm:mx-4 ${
+          routeMode === "new" ? "max-w-full sm:max-w-xl md:max-w-2xl" : "max-w-full sm:max-w-md"
         }`}
       >
-        <h2 className="text-xl font-bold text-white mb-4">
+        <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
           {initial ? "Редагувати рейс" : "Додати рейс"}
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           {error && (
             <ErrorMessage message={error} className="text-sm" />
           )}
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+            <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1">
               Поїзд
             </label>
             <select
-              className="input"
+              className="input text-sm sm:text-base"
               value={form.trainId}
               onChange={(e) =>
                 setForm((f) => ({ ...f, trainId: e.target.value }))
@@ -223,11 +223,11 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
 
           {initial ? (
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">
+              <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1">
                 Маршрут
               </label>
               <select
-                className="input"
+                className="input text-sm sm:text-base"
                 value={form.routeId}
                 onChange={(e) =>
                   setForm((f) => ({ ...f, routeId: e.target.value }))
@@ -245,10 +245,10 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
           ) : (
             <>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
                   Маршрут
                 </label>
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <label className="inline-flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"
@@ -257,7 +257,7 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
                       onChange={() => setRouteMode("existing")}
                       className="text-amber-signal focus:ring-amber-signal"
                     />
-                    <span className="text-sm text-gray-300">
+                    <span className="text-xs sm:text-sm text-gray-300">
                       Обрати існуючий маршрут
                     </span>
                   </label>
@@ -284,7 +284,7 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
                       }}
                       className="text-amber-signal focus:ring-amber-signal"
                     />
-                    <span className="text-sm text-gray-300">
+                    <span className="text-xs sm:text-sm text-gray-300">
                       Створити новий маршрут
                     </span>
                   </label>
@@ -294,7 +294,7 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
               {routeMode === "existing" ? (
                 <div>
                   <select
-                    className="input"
+                    className="input text-sm sm:text-base"
                     value={form.routeId}
                     onChange={(e) =>
                       setForm((f) => ({ ...f, routeId: e.target.value }))
@@ -310,14 +310,14 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
                   </select>
                 </div>
               ) : (
-                <div className="space-y-3 rounded-lg border border-rail-700/80 p-4 bg-rail-900/30">
+                <div className="space-y-3 rounded-lg border border-rail-700/80 p-3 sm:p-4 bg-rail-900/30">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1">
                       Назва маршруту
                     </label>
                     <input
                       type="text"
-                      className="input"
+                      className="input text-sm sm:text-base"
                       value={newRouteName}
                       onChange={(e) => setNewRouteName(e.target.value)}
                       placeholder="Наприклад: Київ — Львів"
@@ -329,7 +329,7 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
                     onAdd={addNewStop}
                     onUpdate={updateNewStop}
                     onRemove={removeNewStop}
-                    maxHeight="max-h-48"
+                    maxHeight="max-h-48 sm:max-h-64"
                   />
                 </div>
               )}
@@ -348,13 +348,13 @@ export function ScheduleFormModal({ onClose, onSubmit, initial }: Props) {
             }
           />
 
-          <div className="flex gap-2 justify-end pt-2">
-            <button type="button" className="btn-secondary" onClick={onClose}>
+          <div className="flex flex-col sm:flex-row gap-2 justify-end pt-2">
+            <button type="button" className="btn-secondary text-sm sm:text-base w-full sm:w-auto" onClick={onClose}>
               Скасувати
             </button>
             <button
               type="submit"
-              className="btn-primary"
+              className="btn-primary text-sm sm:text-base w-full sm:w-auto"
               disabled={loading || !canSubmit}
             >
               {loading ? "Збереження..." : "Зберегти"}

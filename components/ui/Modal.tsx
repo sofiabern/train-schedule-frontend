@@ -10,7 +10,7 @@ type Props = {
 export function Modal({ onClose, children, closeOnBackdrop = true }: Props) {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-sm overflow-y-auto"
       onClick={closeOnBackdrop ? onClose : undefined}
     >
       <div onClick={(e) => e.stopPropagation()}>{children}</div>

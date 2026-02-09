@@ -30,20 +30,20 @@ export function RouteStationsEditor({
 }: Props) {
   return (
     <div>
-      <div className="flex items-center justify-between mb-2">
-        <label className="block text-sm font-medium text-gray-300">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 mb-2">
+        <label className="block text-xs sm:text-sm font-medium text-gray-300">
           Зупинки маршруту
         </label>
         <button
           type="button"
-          className="btn-secondary text-sm"
+          className="btn-secondary text-xs sm:text-sm w-full sm:w-auto"
           onClick={onAdd}
         >
           {addButtonLabel}
         </button>
       </div>
       <div className={`space-y-2 overflow-y-auto scrollbar-amber ${maxHeight}`}>
-        <div className="grid gap-2 p-2 text-xs text-gray-500 font-medium grid-cols-[minmax(8rem,14rem)_7.5rem_7.5rem_auto] items-center">
+        <div className="hidden sm:grid gap-2 p-2 text-xs text-gray-500 font-medium grid-cols-[minmax(8rem,14rem)_7.5rem_7.5rem_auto] items-center">
           <span>Станція</span>
           <span>Прибуття</span>
           <span>Відправлення</span>
@@ -55,10 +55,11 @@ export function RouteStationsEditor({
           return (
             <div
               key={i}
-              className="grid gap-2 p-2 rounded-lg bg-rail-800/50 items-center grid-cols-[minmax(8rem,14rem)_7.5rem_7.5rem_auto]"
+              className="flex flex-col sm:grid gap-2 p-2 rounded-lg bg-rail-800/50 items-stretch sm:items-center sm:grid-cols-[minmax(8rem,14rem)_7.5rem_7.5rem_auto]"
             >
+              <div className="sm:hidden text-xs text-gray-500 font-medium mb-1">Станція</div>
               <select
-                className="input min-w-0"
+                className="input min-w-0 text-sm sm:text-base"
                 value={rs.stationId}
                 onChange={(e) => onUpdate(i, "stationId", e.target.value)}
                 aria-label="Станція"
@@ -72,55 +73,61 @@ export function RouteStationsEditor({
               </select>
               {isFirst ? (
                 <span
-                  className="block w-full text-gray-500 text-sm text-center"
+                  className="block w-full text-gray-500 text-xs sm:text-sm text-center py-2"
                   title="На початковій станції вказується лише час відправлення"
                 >
                   Початок
                 </span>
               ) : (
-                <input
-                  type="time"
-                  className="input w-full min-w-0 cursor-pointer"
-                  value={rs.arrivalTime}
-                  onChange={(e) => onUpdate(i, "arrivalTime", e.target.value)}
-                  onClick={(e) => {
-                    const target = e.target as HTMLInputElement;
-                    target.focus();
-                    if ('showPicker' in target && typeof target.showPicker === 'function') {
-                      target.showPicker();
-                    }
-                  }}
-                  aria-label="Час прибуття"
-                  title="Клікніть для вибору часу"
-                />
+                <>
+                  <div className="sm:hidden text-xs text-gray-500 font-medium mb-1">Прибуття</div>
+                  <input
+                    type="time"
+                    className="input w-full min-w-0 cursor-pointer text-sm sm:text-base"
+                    value={rs.arrivalTime}
+                    onChange={(e) => onUpdate(i, "arrivalTime", e.target.value)}
+                    onClick={(e) => {
+                      const target = e.target as HTMLInputElement;
+                      target.focus();
+                      if ('showPicker' in target && typeof target.showPicker === 'function') {
+                        target.showPicker();
+                      }
+                    }}
+                    aria-label="Час прибуття"
+                    title="Клікніть для вибору часу"
+                  />
+                </>
               )}
               {isLast && !isFirst ? (
                 <span
-                  className="block w-full text-gray-500 text-sm text-center"
+                  className="block w-full text-gray-500 text-xs sm:text-sm text-center py-2"
                   title="На кінцевій станції вказується лише час прибуття"
                 >
                   Кінцева
                 </span>
               ) : (
-                <input
-                  type="time"
-                  className="input w-full min-w-0 cursor-pointer"
-                  value={rs.departureTime}
-                  onChange={(e) => onUpdate(i, "departureTime", e.target.value)}
-                  onClick={(e) => {
-                    const target = e.target as HTMLInputElement;
-                    target.focus();
-                    if ('showPicker' in target && typeof target.showPicker === 'function') {
-                      target.showPicker();
-                    }
-                  }}
-                  aria-label="Час відправлення"
-                  title="Клікніть для вибору часу"
-                />
+                <>
+                  <div className="sm:hidden text-xs text-gray-500 font-medium mb-1">Відправлення</div>
+                  <input
+                    type="time"
+                    className="input w-full min-w-0 cursor-pointer text-sm sm:text-base"
+                    value={rs.departureTime}
+                    onChange={(e) => onUpdate(i, "departureTime", e.target.value)}
+                    onClick={(e) => {
+                      const target = e.target as HTMLInputElement;
+                      target.focus();
+                      if ('showPicker' in target && typeof target.showPicker === 'function') {
+                        target.showPicker();
+                      }
+                    }}
+                    aria-label="Час відправлення"
+                    title="Клікніть для вибору часу"
+                  />
+                </>
               )}
               <button
                 type="button"
-                className="btn-ghost text-red-400 text-sm"
+                className="btn-ghost text-red-400 text-xs sm:text-sm w-full sm:w-auto mt-2 sm:mt-0"
                 onClick={() => onRemove(i)}
                 aria-label="Видалити зупинку"
               >

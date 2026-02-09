@@ -41,28 +41,28 @@ export function DaysOfWeekPicker({
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-300 mb-2">
+      <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
         Дні тижня (коли є рейс)
       </label>
-      <div className="flex flex-wrap gap-2 items-center">
+      <div className="flex flex-wrap gap-1.5 sm:gap-2 items-center">
         {showEveryDayToggle && (
           <>
-            <label className="inline-flex items-center gap-1.5 cursor-pointer font-medium text-amber-signal/90">
+            <label className="inline-flex items-center gap-1 sm:gap-1.5 cursor-pointer font-medium text-amber-signal/90">
               <input
                 type="checkbox"
                 checked={isEveryDay}
                 onChange={toggleEveryDay}
                 className="rounded border-rail-600 bg-rail-900/50 text-amber-signal focus:ring-amber-signal"
               />
-              <span className="text-sm">Щодня</span>
+              <span className="text-xs sm:text-sm">Щодня</span>
             </label>
-            <span className="text-gray-500 text-sm">|</span>
+            <span className="text-gray-500 text-xs sm:text-sm hidden sm:inline">|</span>
           </>
         )}
         {DAYS.map(({ value, label }) => (
           <label
             key={value}
-            className="inline-flex items-center gap-1.5 cursor-pointer"
+            className="inline-flex items-center gap-1 sm:gap-1.5 cursor-pointer"
           >
             <input
               type="checkbox"
@@ -70,7 +70,7 @@ export function DaysOfWeekPicker({
               onChange={() => toggleDay(value)}
               className="rounded border-rail-600 bg-rail-900/50 text-amber-signal focus:ring-amber-signal"
             />
-            <span className="text-sm text-gray-300">{label}</span>
+            <span className="text-xs sm:text-sm text-gray-300">{label}</span>
           </label>
         ))}
       </div>
