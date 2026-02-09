@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authRegister } from "@/lib/api";
@@ -12,7 +12,13 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { isReady } = useAuth();
+  const { isAuthenticated, isReady } = useAuth();
+
+  useEffect(() => {
+    if (isReady && !isAuthenticated) {
+      router.replace("/login");
+    }
+  }, [isReady, isAuthenticated, router]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -32,7 +38,7 @@ export default function RegisterPage() {
     }
   }
 
-  if (!isReady) {
+  if (!isReady || !isAuthenticated) {
     return (
       <div className="card p-8 text-center text-gray-400">
         Завантаження...
